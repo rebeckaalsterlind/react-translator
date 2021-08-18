@@ -2,19 +2,16 @@
 import React, {Component} from "react";
 import Answer from "./Answer";
 import Question from "./Question";
-
 import './App.css';
 
 class App extends Component {
   constructor(props) {
-    
     super(props);
     this.state = {
       input: '', 
       selectFrom: '',
       selectTo: ''
     }
-
   }
 
   toTranslate = (data) => {
@@ -23,12 +20,12 @@ class App extends Component {
       selectFrom: data.selectFrom, 
       selectTo: data.selectTo
     })
-
   }
 
   render() {
     return (
       <div className="App">
+        <h1>Translator</h1>
         <Question input={this.state.input} sendValue={this.toTranslate}/>      
         <Answer input={this.state.input} selectFrom={this.state.selectFrom} selectTo={this.state.selectTo} />
       </div>
@@ -36,7 +33,5 @@ class App extends Component {
   }
 
 };  
-
-
 
 export default App;

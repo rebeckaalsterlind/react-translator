@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import Answer from "./Answer";
+import "./Question.css";
 
 class Question extends Component {
   
@@ -34,16 +34,16 @@ class Question extends Component {
   render() {
 
     return (
-      <form onSubmit={this.handleSubmit} >
+      <form onSubmit={this.handleSubmit} className="Question">
         <select name="from" onChange={this.handleFrom}>
-          <option value="se">Swedish</option>
+          <option value="se">Swedish</option> 
           <option value="en">English</option>
           <option value="es">Spanish</option>
           <option value="fr">French</option>
           <option value="it">Italian</option>
           <option value="de">German</option>
         </select>
-        <label> to: </label>
+        <label> to </label>
         <select i name="to" onChange={this.handleTo}>
           <option value="en">English</option>
           <option value="es">Spanish</option>
@@ -52,7 +52,7 @@ class Question extends Component {
           <option value="de">German</option>
           <option value="se">Swedish</option>
         </select><br ></br> 
-        <input type="text" id="input" placeholder="Sentence.." onChange={this.handleChange} /> 
+        <input type="text" id="input" placeholder="..." required onChange={this.handleChange} /> 
         <button type="submit" >Translate</button>
       </form>
     )

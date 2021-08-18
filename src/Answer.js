@@ -11,24 +11,19 @@ class Answer extends Component {
     }
   }
 
-
   componentDidUpdate(prevProps) {
-
+    
     if ((this.props.input !== prevProps.input) || (this.props.selectTo !== prevProps.selectTo)) {
       
       this.setState({display: true})
-      
-      if(this.props.input === "") {
-        this.setState({translated: "You must enter a text"})
-      } else {
-        fetch(`https://api.mymemory.translated.net/get?q=${this.props.input}&langpair=${this.props.selectFrom}|${this.props.selectTo}`)
-        .then((response) => response.json())
-        .then((data) => this.setState({ translated: data.responseData.translatedText }))
-      }
-      
+    
+      fetch(`https://api.mymemory.translated.net/get?q=${this.props.input}&langpair=${this.props.selectFrom}|${this.props.selectTo}`)
+      .then((response) => response.json())
+      .then((data) => this.setState({ translated: data.responseData.translatedText }))
+  
     }
-  }    
 
+  }    
 
   render() {
     return (
