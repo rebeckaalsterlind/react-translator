@@ -11,18 +11,16 @@ class App extends Component {
     super(props);
     this.state = {
       input: '', 
-      select: '', 
-      display: false
+      select: ''
     }
 
   }
 
   toTranslate = (data) => {
-
+console.log('häe kommer callback', data.input, data.select);
     this.setState({
       input: data.input, 
       select: data.select, 
-      display: true
     })
 
   }
@@ -31,12 +29,11 @@ class App extends Component {
     return (
       <div className="App">
         <Question input={this.state.input} sendValue={this.toTranslate}/>      
-        {this.state.display &&
-          <> 
-            <h3>Swedish to {this.state.select}</h3>
-            <Answer input={this.state.input} select={this.state.select} />
-          </>
-        }
+
+        
+          <h3>Swedish to {this.state.select}</h3>
+          <Answer input={this.state.input} select={this.state.select} />
+    
       </div>
     )
   }
