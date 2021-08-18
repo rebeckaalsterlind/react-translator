@@ -5,30 +5,23 @@ class Answer extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {translate: this.props.toTranslate}
+    this.state = {
+      translate: this.props.input, 
+      language: this.props.select
+    }
   }
 
   componentDidMount = () => {
-    console.log('in didmount state translate', this.state.translate);
+    console.log('in didmount state translate:', this.state.translate);
     
-    fetch(`https://type.fit/api/quotes`)
+    fetch(`https://api.mymemory.translated.net/get?q=${this.state.translate}&langpair=sv|${this.state.language}`)
     .then((response) => response.json())
-    .then((data) => {
-
-      console.log('data', data[300].text);
-      this.setState({translate: data[300].text});
-
-    })
+    .then((data) => this.setState({translate: data.responseData.translatedText}))
 
   }
 
   render() {
-    return (
-      <>
-        <p className="Answer">{this.state.translate}</p>
-      </>
-      
-    )
+    return <p className="Answer">{this.state.translate}</p>
   }
 
 }

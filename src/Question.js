@@ -4,31 +4,32 @@ import Answer from "./Answer";
 class Question extends Component {
   constructor(props) {
     super(props);
-    this.state = {value: this.props.value}
+    this.state = {input: this.props.input, select: 'en'}
   }
 
   handleChange = (evt) => {
-    this.setState({value: evt.target.value})
+    this.setState({input: evt.target.value})
   }
 
-  // componentDidMount() {
-  //   fetch(`https://api.mymemory.translated.net/get?q=${this.state.message}&langpair=en|it`)
-  //   .then((response) => response.json())
-  //   .then(function(data){
-  //     this.setState({display: data.responseData.translatedText});
-  //   })
-
-  // }
+  handleSelect = (evt) => {
+    this.setState({select: evt.target.value})
+  }
+    
     
   handleSubmit = (evt) => {
     evt.preventDefault();
-    this.props.sendValue(this.state.value)
+    this.props.sendValue({input: this.state.input, select: this.state.select})
   }
 
   render() {
     return (
       <form onSubmit={this.handleSubmit} >
-        <input type="text" placeholder="Sentence.." value={this.state.value} onChange={this.handleChange} />
+        <input type="text" placeholder="Sentence.." value={this.state.input} onChange={this.handleChange} /> <br />
+        <span>Translate to:</span>
+        <select id="language" name="language" onChange={this.handleSelect}>
+          <option value="en">English</option>
+          <option value="it">Italiano</option>
+        </select><br ></br>
         <button type="submit" >Translate</button>
       </form>
     )
