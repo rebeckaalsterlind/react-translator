@@ -5,18 +5,27 @@ class Question extends Component {
   
   constructor(props) {
     super(props);
-    this.state = {input: this.props.input, select: 'en'}
+    this.state = {
+      input: this.props.input, 
+      selectFrom: 'sv',
+      selectTo: 'en'}
   }
 
   handleChange = (evt) => this.setState({input: evt.target.value})
 
-  handleSelect = (evt) => this.setState({select: evt.target.value})
+  handleFrom = (evt) => this.setState({selectFrom: evt.target.value})
 
-    
+  handleTo = (evt) => this.setState({selectTo: evt.target.value})
+
   handleSubmit = (evt) => {
 
     evt.preventDefault();
-    this.props.sendValue({input: this.state.input, select: this.state.select})
+    this.props.sendValue({
+      input: this.state.input, 
+      selectFrom: this.state.selectFrom, 
+      selectTo: this.state.selectTo
+    })
+
     document.getElementById("input").value = "";
     this.setState({input: ''})
 
@@ -26,15 +35,24 @@ class Question extends Component {
 
     return (
       <form onSubmit={this.handleSubmit} >
-        <input type="text" id="input" placeholder="Sentence.." onChange={this.handleChange} /> <br />
-        <label>Swedish to: </label>
-        <select id="language" name="language" onChange={this.handleSelect}>
+        <select name="from" onChange={this.handleFrom}>
+          <option value="se">Swedish</option>
           <option value="en">English</option>
           <option value="es">Spanish</option>
           <option value="fr">French</option>
           <option value="it">Italian</option>
           <option value="de">German</option>
-        </select><br ></br>
+        </select>
+        <label> to: </label>
+        <select i name="to" onChange={this.handleTo}>
+          <option value="en">English</option>
+          <option value="es">Spanish</option>
+          <option value="fr">French</option>
+          <option value="it">Italian</option>
+          <option value="de">German</option>
+          <option value="se">Swedish</option>
+        </select><br ></br> 
+        <input type="text" id="input" placeholder="Sentence.." onChange={this.handleChange} /> 
         <button type="submit" >Translate</button>
       </form>
     )

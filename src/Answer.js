@@ -12,14 +12,16 @@ class Answer extends Component {
   }
 
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps) {
 
-    if ((this.props.input !== prevProps.input) || (this.props.select !== prevProps.select)) {
-      this.setState({display:true})
+    if ((this.props.input !== prevProps.input) || (this.props.selectTo !== prevProps.selectTo)) {
+      
+      this.setState({display: true})
+      
       if(this.props.input === "") {
-        this.setState({translated: "You must enter a word or sentence"})
+        this.setState({translated: "You must enter a text"})
       } else {
-        fetch(`https://api.mymemory.translated.net/get?q=${this.props.input}&langpair=sv|${this.props.select}`)
+        fetch(`https://api.mymemory.translated.net/get?q=${this.props.input}&langpair=${this.props.selectFrom}|${this.props.selectTo}`)
         .then((response) => response.json())
         .then((data) => this.setState({ translated: data.responseData.translatedText }))
       }
@@ -28,15 +30,19 @@ class Answer extends Component {
   }    
 
 
-  
-
   render() {
     return (
       <div className="Answer">
         {this.state.display && 
         <>
-          <p>{this.state.translated}</p> 
-          <p>{this.props.input}</p> 
+          <section>
+            <h2>{this.props.selectFrom}</h2>
+            <p>{this.props.input}</p> 
+          </section>
+          <section>
+            <h2>{this.props.selectTo}</h2>
+            <p>{this.state.translated}</p> 
+          </section>
         </>
         }
       </div>

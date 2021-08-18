@@ -1,4 +1,14 @@
 .Answer {
+
+  height: 200px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Answer section {
   border: 1px solid black;
-  min-height: 200px;;
+  width: 50%;
+  height: 100%;
 }
