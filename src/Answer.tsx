@@ -1,18 +1,27 @@
 import React, {Component} from "react";
 import "./Answer.css"
 
-class Answer extends Component {
+interface Props {
+  input: string,
+  selectTo: string,
+  selectFrom: string
+}
 
-  constructor(props) {
-    super(props);
-    this.state = { 
+interface State {
+  translated: string,
+  display: boolean
+}
+
+class Answer extends Component<Props, State> {
+
+    state = { 
       translated: this.props.input,
       display: false
     }
-  }
 
-  componentDidUpdate(prevProps) {
-    
+
+  componentDidUpdate(prevProps:any) {
+
     if ((this.props.input !== prevProps.input) || (this.props.selectTo !== prevProps.selectTo)) {
       
       this.setState({display: true})
@@ -48,3 +57,6 @@ class Answer extends Component {
 
 
 export default Answer;
+
+
+

@@ -4,17 +4,21 @@ import Answer from "./Answer";
 import Question from "./Question";
 import './App.css';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      input: '', 
-      selectFrom: '',
-      selectTo: ''
-    }
+interface State {
+  input: string, 
+  selectFrom: string,
+  selectTo: string
+}
+
+class App extends Component<{}, State> {
+
+  state = {
+    input: '', 
+    selectFrom: '',
+    selectTo: ''
   }
 
-  toTranslate = (data) => {
+  toTranslate = (data:any) => {
     this.setState({
       input: data.input, 
       selectFrom: data.selectFrom, 
