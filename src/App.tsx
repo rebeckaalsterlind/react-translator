@@ -23,7 +23,7 @@ class App extends Component<{}, State> {
       input: data.input, 
       selectFrom: data.selectFrom, 
       selectTo: data.selectTo
-    })
+    });
   }
 
   render() {
